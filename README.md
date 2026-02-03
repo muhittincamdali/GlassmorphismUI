@@ -1,11 +1,32 @@
 # GlassmorphismUI
 
-[![Swift](https://img.shields.io/badge/Swift-5.9+-orange.svg)](https://swift.org)
-[![Platforms](https://img.shields.io/badge/Platforms-iOS%2016+%20|%20macOS%2013+-blue.svg)](https://developer.apple.com)
-[![SPM](https://img.shields.io/badge/SPM-Compatible-brightgreen.svg)](https://swift.org/package-manager)
-[![License](https://img.shields.io/badge/License-MIT-lightgrey.svg)](LICENSE)
+<p align="center">
+  <img src="https://img.shields.io/badge/Swift-5.9+-orange.svg" alt="Swift 5.9+">
+  <img src="https://img.shields.io/badge/iOS-16.0+-blue.svg" alt="iOS 16+">
+  <img src="https://img.shields.io/badge/macOS-13.0+-blue.svg" alt="macOS 13+">
+  <img src="https://img.shields.io/badge/SPM-Compatible-brightgreen.svg" alt="SPM">
+  <img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License">
+  <img src="https://img.shields.io/github/stars/muhittincamdali/GlassmorphismUI?style=social" alt="Stars">
+</p>
 
-A modern glassmorphism effects library for SwiftUI. Create stunning frosted glass, aurora gradients, and translucent UI components with minimal effort.
+<p align="center">
+  A modern glassmorphism effects library for SwiftUI.<br>
+  Create stunning frosted glass, aurora gradients, and translucent UI components with minimal effort.
+</p>
+
+```
+╭─────────────────────────────────────────────────────────────╮
+│                                                             │
+│      ╔═══════════════════════════════════════════╗         │
+│      ║                                           ║         │
+│      ║     ✨ GlassmorphismUI ✨                ║         │
+│      ║                                           ║         │
+│      ║     Frosted • Aurora • Translucent       ║         │
+│      ║                                           ║         │
+│      ╚═══════════════════════════════════════════╝         │
+│                                                             │
+╰─────────────────────────────────────────────────────────────╯
+```
 
 ---
 
@@ -13,16 +34,16 @@ A modern glassmorphism effects library for SwiftUI. Create stunning frosted glas
 
 | Feature | Description |
 |---------|-------------|
-| 🪟 Glass Views | Fully customizable translucent glass panels |
-| 🎨 Aurora Glass | Animated gradient-based glass effects |
-| ❄️ Frosted Glass | Classic frosted/matte glass appearance |
-| 🃏 Glass Card | Pre-built card component with glass styling |
-| 🔘 Glass Button | Interactive button with glass background |
-| 📱 Glass NavBar | Navigation bar with blur and transparency |
-| 🗂 Glass TabBar | Tab bar with glassmorphism styling |
-| 🎬 Animations | Shimmer and pulse effects |
-| 🌗 Themes | Automatic light/dark mode adaptation |
-| 🧩 Modifiers | Simple `.glass()` modifier for any view |
+| 🪟 **Glass Views** | Fully customizable translucent glass panels |
+| 🎨 **Aurora Glass** | Animated gradient-based glass effects |
+| ❄️ **Frosted Glass** | Classic frosted/matte glass appearance |
+| 🃏 **Glass Card** | Pre-built card component with glass styling |
+| 🔘 **Glass Button** | Interactive button with glass background |
+| 📱 **Glass NavBar** | Navigation bar with blur and transparency |
+| 🗂 **Glass TabBar** | Tab bar with glassmorphism styling |
+| 🎬 **Animations** | Shimmer and pulse effects |
+| 🌗 **Themes** | Automatic light/dark mode adaptation |
+| 🧩 **Modifiers** | Simple `.glass()` modifier for any view |
 
 ---
 
@@ -48,6 +69,16 @@ dependencies: [
 ```
 
 Then add `"GlassmorphismUI"` to your target's dependencies.
+
+### CocoaPods
+
+```ruby
+pod 'GlassmorphismUI', '~> 1.0'
+```
+
+### Manual
+
+Copy the `Sources/GlassmorphismUI` folder into your project.
 
 ---
 
@@ -275,9 +306,17 @@ GlassmorphismUI/
 
 ---
 
+## 📚 Documentation
+
+- [API Reference](https://github.com/muhittincamdali/GlassmorphismUI/wiki)
+- [Examples](Examples/)
+- [Migration Guide](docs/migration.md)
+
+---
+
 ## 🤝 Contributing
 
-Contributions are welcome! Feel free to open issues or submit pull requests.
+Contributions are welcome! Please see our [Contributing Guide](CONTRIBUTING.md).
 
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/amazing-feature`)
@@ -287,9 +326,22 @@ Contributions are welcome! Feel free to open issues or submit pull requests.
 
 ---
 
+## 🔒 Security
+
+See [SECURITY.md](SECURITY.md) for reporting vulnerabilities.
+
+---
+
 ## 📄 License
 
 This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
+
+---
+
+## 👨‍💻 Author
+
+**Muhittin Camdali**
+- GitHub: [@muhittincamdali](https://github.com/muhittincamdali)
 
 ---
 
@@ -297,3 +349,9 @@ This project is licensed under the MIT License — see the [LICENSE](LICENSE) fi
 
 - Inspired by the glassmorphism design trend
 - Built with SwiftUI and love for clean UI
+
+---
+
+<p align="center">
+  <b>Made with ❤️ for the SwiftUI community</b>
+</p>
