@@ -8,30 +8,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
-- Additional glass presets
+- visionOS navigation support
 
-## [1.0.0] - 2025-01-15
+## [1.0.0] - 2024-01-15
 
 ### Added
-- Core `.glass()` view modifier
-- GlassCard component
-- GlassButton with interactions
-- GlassNavBar navigation bar
-- GlassTabBar tab bar component
-- Aurora glass effect with animated gradients
-- Frosted glass effect
-- GlassConfiguration for customization
-- Four predefined materials (thin, regular, thick, ultra)
-- Shimmer animation effect
-- Pulse animation effect
-- Automatic light/dark mode adaptation
-- GlassTheme system
+- Type-safe navigation with compile-time checks
+- SwiftUI NavigationStack integration
+- Deep linking support with URL parsing
+- Tab bar coordination
+- Modal presentation handling
+- Navigation state persistence
+- Route parameters with type safety
+- Navigation interceptors (guards)
+- Animated transitions
+- Back stack management
+- Child router support (coordinator pattern)
 
-### Changed
-- Optimized blur rendering performance
+### Features
+- Zero dependencies
+- Protocol-oriented design
+- Full async/await support
 
-### Fixed
-- Corner radius clipping issues
-
-[Unreleased]: https://github.com/muhittincamdali/GlassmorphismUI/compare/v1.0.0...HEAD
-[1.0.0]: https://github.com/muhittincamdali/GlassmorphismUI/releases/tag/v1.0.0
+[Unreleased]: https://github.com/muhittincamdali/SwiftRouter/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/muhittincamdali/SwiftRouter/releases/tag/v1.0.0

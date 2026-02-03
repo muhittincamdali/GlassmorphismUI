@@ -1,357 +1,55 @@
-# GlassmorphismUI
+<div align="center">
 
-<p align="center">
-  <img src="https://img.shields.io/badge/Swift-5.9+-orange.svg" alt="Swift 5.9+">
-  <img src="https://img.shields.io/badge/iOS-16.0+-blue.svg" alt="iOS 16+">
-  <img src="https://img.shields.io/badge/macOS-13.0+-blue.svg" alt="macOS 13+">
-  <img src="https://img.shields.io/badge/SPM-Compatible-brightgreen.svg" alt="SPM">
-  <img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License">
-  <img src="https://img.shields.io/github/stars/muhittincamdali/GlassmorphismUI?style=social" alt="Stars">
-</p>
+# ✨ GlassmorphismUI
 
-<p align="center">
-  A modern glassmorphism effects library for SwiftUI.<br>
-  Create stunning frosted glass, aurora gradients, and translucent UI components with minimal effort.
-</p>
+**Cross-platform glassmorphism components for iOS, Flutter & React Native**
 
-```
-╭─────────────────────────────────────────────────────────────╮
-│                                                             │
-│      ╔═══════════════════════════════════════════╗         │
-│      ║                                           ║         │
-│      ║     ✨ GlassmorphismUI ✨                ║         │
-│      ║                                           ║         │
-│      ║     Frosted • Aurora • Translucent       ║         │
-│      ║                                           ║         │
-│      ╚═══════════════════════════════════════════╝         │
-│                                                             │
-╰─────────────────────────────────────────────────────────────╯
-```
+[![Swift](https://img.shields.io/badge/Swift-5.9+-F05138?style=for-the-badge&logo=swift&logoColor=white)](https://swift.org)
+[![Dart](https://img.shields.io/badge/Dart-3.0+-0175C2?style=for-the-badge&logo=dart&logoColor=white)](https://dart.dev)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://typescriptlang.org)
+[![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
+
+</div>
 
 ---
 
 ## ✨ Features
 
-| Feature | Description |
-|---------|-------------|
-| 🪟 **Glass Views** | Fully customizable translucent glass panels |
-| 🎨 **Aurora Glass** | Animated gradient-based glass effects |
-| ❄️ **Frosted Glass** | Classic frosted/matte glass appearance |
-| 🃏 **Glass Card** | Pre-built card component with glass styling |
-| 🔘 **Glass Button** | Interactive button with glass background |
-| 📱 **Glass NavBar** | Navigation bar with blur and transparency |
-| 🗂 **Glass TabBar** | Tab bar with glassmorphism styling |
-| 🎬 **Animations** | Shimmer and pulse effects |
-| 🌗 **Themes** | Automatic light/dark mode adaptation |
-| 🧩 **Modifiers** | Simple `.glass()` modifier for any view |
-
----
-
-## 📦 Installation
-
-### Swift Package Manager
-
-Add GlassmorphismUI to your project via Xcode:
-
-1. Go to **File → Add Package Dependencies...**
-2. Enter the repository URL:
-   ```
-   https://github.com/muhittincamdali/GlassmorphismUI.git
-   ```
-3. Select **Up to Next Major Version** → `1.0.0`
-
-Or add it to your `Package.swift`:
-
-```swift
-dependencies: [
-    .package(url: "https://github.com/muhittincamdali/GlassmorphismUI.git", from: "1.0.0")
-]
-```
-
-Then add `"GlassmorphismUI"` to your target's dependencies.
-
-### CocoaPods
-
-```ruby
-pod 'GlassmorphismUI', '~> 1.0'
-```
-
-### Manual
-
-Copy the `Sources/GlassmorphismUI` folder into your project.
+- 🧊 **Cross-Platform** — iOS, Flutter, React Native
+- 🎨 **Consistent API** — Same patterns everywhere
+- 📦 **50+ Components** — Cards, buttons, modals
+- ⚡ **Optimized** — Native performance
+- 🌈 **Theming** — Customizable blur/tint
 
 ---
 
 ## 🚀 Quick Start
 
-### Basic Glass Modifier
-
-Apply a glass effect to any SwiftUI view with a single modifier:
-
+### SwiftUI
 ```swift
 import GlassmorphismUI
 
-struct ContentView: View {
-    var body: some View {
-        ZStack {
-            LinearGradient(
-                colors: [.purple, .blue, .cyan],
-                startPoint: .topLeading,
-                endPoint: .bottomTrailing
-            )
-            .ignoresSafeArea()
-
-            Text("Hello, Glass!")
-                .font(.largeTitle)
-                .padding(40)
-                .glass()
-        }
-    }
-}
-```
-
-### Glass Card
-
-```swift
 GlassCard {
-    VStack(alignment: .leading, spacing: 12) {
-        Text("Weather")
-            .font(.headline)
-        Text("24°C — Partly Cloudy")
-            .font(.title2.bold())
-        Text("Istanbul, Turkey")
-            .font(.subheadline)
-            .foregroundStyle(.secondary)
-    }
-    .padding()
+    Text("Hello")
 }
 ```
 
-### Glass Button
+### Flutter
+```dart
+import 'package:glassmorphism_ui/glassmorphism_ui.dart';
 
-```swift
-GlassButton("Get Started", icon: "arrow.right") {
-    print("Tapped!")
-}
+GlassCard(child: Text('Hello'))
 ```
 
-### Aurora Glass
+### React Native
+```tsx
+import { GlassCard } from 'glassmorphism-ui';
 
-```swift
-Text("Aurora Effect")
-    .padding(32)
-    .auroraGlass(colors: [.pink, .purple, .indigo])
+<GlassCard><Text>Hello</Text></GlassCard>
 ```
-
-### Frosted Glass
-
-```swift
-Image(systemName: "heart.fill")
-    .font(.system(size: 48))
-    .padding(40)
-    .frostedGlass(opacity: 0.15)
-```
-
----
-
-## 🎛 Configuration
-
-### GlassConfiguration
-
-Fine-tune every aspect of the glass effect:
-
-```swift
-let config = GlassConfiguration(
-    blurRadius: 20,
-    backgroundOpacity: 0.12,
-    borderWidth: 0.8,
-    borderOpacity: 0.25,
-    cornerRadius: 16,
-    shadowRadius: 8,
-    shadowOpacity: 0.1
-)
-
-Text("Custom Glass")
-    .padding()
-    .glass(configuration: config)
-```
-
-### Predefined Materials
-
-Choose from built-in material presets:
-
-```swift
-// Thin — subtle, barely-there glass
-Text("Thin").glass(material: .thin)
-
-// Regular — balanced default
-Text("Regular").glass(material: .regular)
-
-// Thick — prominent frosted look
-Text("Thick").glass(material: .thick)
-
-// Ultra — maximum blur and opacity
-Text("Ultra").glass(material: .ultra)
-```
-
----
-
-## 🧱 Components
-
-### GlassNavBar
-
-```swift
-GlassNavBar(title: "Explore") {
-    Button(action: {}) {
-        Image(systemName: "line.3.horizontal")
-    }
-} trailing: {
-    Button(action: {}) {
-        Image(systemName: "bell")
-    }
-}
-```
-
-### GlassTabBar
-
-```swift
-GlassTabBar(
-    selectedIndex: $selectedTab,
-    items: [
-        GlassTabItem(icon: "house", title: "Home"),
-        GlassTabItem(icon: "magnifyingglass", title: "Search"),
-        GlassTabItem(icon: "person", title: "Profile")
-    ]
-)
-```
-
----
-
-## 🎬 Animations
-
-### Shimmer
-
-```swift
-Text("Loading...")
-    .padding()
-    .glass()
-    .glassShimmer()
-```
-
-### Pulse
-
-```swift
-Circle()
-    .frame(width: 80, height: 80)
-    .glass()
-    .glassPulse(duration: 2.0)
-```
-
----
-
-## 🌗 Theme Support
-
-GlassmorphismUI automatically adapts to light and dark mode. You can also set a theme explicitly:
-
-```swift
-Text("Themed Glass")
-    .padding()
-    .glass()
-    .glassTheme(.dark)
-```
-
-| Property | Light | Dark |
-|----------|-------|------|
-| Background | White 10% | White 8% |
-| Border | White 30% | White 20% |
-| Shadow | Black 8% | Black 15% |
-
----
-
-## 🏗 Architecture
-
-```
-GlassmorphismUI/
-├── Core/
-│   ├── GlassView.swift            # Main glass effect view
-│   ├── GlassConfiguration.swift   # Configuration struct
-│   └── GlassMaterial.swift        # Predefined materials
-├── Modifiers/
-│   ├── GlassModifier.swift        # .glass() view modifier
-│   ├── FrostedGlass.swift         # Frosted glass modifier
-│   └── AuroraGlass.swift          # Aurora gradient glass
-├── Components/
-│   ├── GlassCard.swift            # Glass card component
-│   ├── GlassButton.swift          # Glass button
-│   ├── GlassNavBar.swift          # Glass navigation bar
-│   └── GlassTabBar.swift          # Glass tab bar
-├── Animation/
-│   └── GlassAnimation.swift       # Shimmer & pulse
-├── Theme/
-│   └── GlassTheme.swift           # Light/dark themes
-└── Extensions/
-    └── Color+Glass.swift          # Color helpers
-```
-
----
-
-## 📋 Requirements
-
-| Platform | Minimum Version |
-|----------|----------------|
-| iOS | 16.0+ |
-| macOS | 13.0+ |
-| Swift | 5.9+ |
-| Xcode | 15.0+ |
-
----
-
-## 📚 Documentation
-
-- [API Reference](https://github.com/muhittincamdali/GlassmorphismUI/wiki)
-- [Examples](Examples/)
-- [Migration Guide](docs/migration.md)
-
----
-
-## 🤝 Contributing
-
-Contributions are welcome! Please see our [Contributing Guide](CONTRIBUTING.md).
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'feat: add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
----
-
-## 🔒 Security
-
-See [SECURITY.md](SECURITY.md) for reporting vulnerabilities.
 
 ---
 
 ## 📄 License
 
-This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
-
----
-
-## 👨‍💻 Author
-
-**Muhittin Camdali**
-- GitHub: [@muhittincamdali](https://github.com/muhittincamdali)
-
----
-
-## 🙏 Acknowledgments
-
-- Inspired by the glassmorphism design trend
-- Built with SwiftUI and love for clean UI
-
----
-
-<p align="center">
-  <b>Made with ❤️ for the SwiftUI community</b>
-</p>
+MIT • [@muhittincamdali](https://github.com/muhittincamdali)
