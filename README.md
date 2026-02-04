@@ -1,55 +1,83 @@
-<div align="center">
+<p align="center">
+  <img src="Assets/logo.png" alt="GlassmorphismUI" width="200"/>
+</p>
 
-# ✨ GlassmorphismUI
+<h1 align="center">GlassmorphismUI</h1>
 
-**Cross-platform glassmorphism components for iOS, Flutter & React Native**
+<p align="center">
+  <strong>✨ Cross-platform glassmorphism components for iOS, Flutter & React Native</strong>
+</p>
 
-[![Swift](https://img.shields.io/badge/Swift-5.9+-F05138?style=for-the-badge&logo=swift&logoColor=white)](https://swift.org)
-[![Dart](https://img.shields.io/badge/Dart-3.0+-0175C2?style=for-the-badge&logo=dart&logoColor=white)](https://dart.dev)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://typescriptlang.org)
-[![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
-
-</div>
-
----
-
-## ✨ Features
-
-- 🧊 **Cross-Platform** — iOS, Flutter, React Native
-- 🎨 **Consistent API** — Same patterns everywhere
-- 📦 **50+ Components** — Cards, buttons, modals
-- ⚡ **Optimized** — Native performance
-- 🌈 **Theming** — Customizable blur/tint
+<p align="center">
+  <img src="https://img.shields.io/badge/iOS-17.0+-blue.svg" alt="iOS"/>
+  <img src="https://img.shields.io/badge/Flutter-3.24-blue.svg" alt="Flutter"/>
+  <img src="https://img.shields.io/badge/React_Native-0.75-blue.svg" alt="React Native"/>
+</p>
 
 ---
 
-## 🚀 Quick Start
+## Why GlassmorphismUI?
 
-### SwiftUI
+Glassmorphism looks beautiful but is hard to implement consistently across platforms. **GlassmorphismUI** provides identical glass effects for iOS, Flutter, and React Native.
+
+## iOS (SwiftUI)
+
 ```swift
 import GlassmorphismUI
 
-GlassCard {
-    Text("Hello")
+GlassCard(blur: 10, opacity: 0.2) {
+    Text("Glass Card")
+}
+
+GlassButton("Press Me", blur: 5) {
+    // action
 }
 ```
 
-### Flutter
+## Flutter
+
 ```dart
 import 'package:glassmorphism_ui/glassmorphism_ui.dart';
 
-GlassCard(child: Text('Hello'))
+GlassCard(
+  blur: 10,
+  opacity: 0.2,
+  child: Text('Glass Card'),
+)
+
+GlassButton(
+  onPressed: () {},
+  child: Text('Press Me'),
+)
 ```
 
-### React Native
+## React Native
+
 ```tsx
-import { GlassCard } from 'glassmorphism-ui';
+import { GlassCard, GlassButton } from 'glassmorphism-ui';
 
-<GlassCard><Text>Hello</Text></GlassCard>
+<GlassCard blur={10} opacity={0.2}>
+  <Text>Glass Card</Text>
+</GlassCard>
+
+<GlassButton onPress={() => {}}>
+  <Text>Press Me</Text>
+</GlassButton>
 ```
 
----
+## Customization
 
-## 📄 License
+All platforms support:
+- Blur intensity
+- Opacity
+- Border
+- Tint color
+- Shadow
 
-MIT • [@muhittincamdali](https://github.com/muhittincamdali)
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## License
+
+MIT License
