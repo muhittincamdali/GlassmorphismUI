@@ -1,0 +1,9 @@
+# Code Owners for GlassmorphismUI
+* @muhittincamdali
+/Sources/ @muhittincamdali
+/Tests/ @muhittincamdali
+/Examples/ @muhittincamdali
+/swift/ @muhittincamdali
+/dart/ @muhittincamdali
+/typescript/ @muhittincamdali
+*.md @muhittincamdali
