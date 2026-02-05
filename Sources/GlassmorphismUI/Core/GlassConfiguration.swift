@@ -1,94 +1,171 @@
+// GlassConfiguration.swift
+// GlassmorphismUI - Production-ready glassmorphism effects for SwiftUI
+// Copyright (c) 2024-2025 Muhittin Camdali. MIT License.
+
 import SwiftUI
 
-/// Configuration parameters for a glassmorphism effect.
+// MARK: - GlassConfiguration
+
+/// Global configuration for GlassmorphismUI behavior.
 ///
-/// Use `GlassConfiguration` to fine-tune every visual aspect of the glass:
+/// Use this to customize default behaviors across your entire app.
+///
+/// ## Example
 ///
 /// ```swift
-/// let config = GlassConfiguration(
-///     blurRadius: 25,
-///     backgroundOpacity: 0.15,
-///     cornerRadius: 20
-/// )
+/// // In your App initialization
+/// GlassConfiguration.shared.defaultStyle = .prominent
+/// GlassConfiguration.shared.reduceTransparency = false
 /// ```
-public struct GlassConfiguration: Sendable, Equatable {
+public final class GlassConfiguration: ObservableObject, @unchecked Sendable {
+    
+    // MARK: - Singleton
+    
+    /// The shared configuration instance.
+    public static let shared = GlassConfiguration()
+    
     // MARK: - Properties
-
-    /// The blur radius applied to the background. Higher values produce a more diffused look.
-    public var blurRadius: CGFloat
-
-    /// The opacity multiplier for the glass background fill.
-    public var backgroundOpacity: CGFloat
-
-    /// The width of the border stroke in points.
-    public var borderWidth: CGFloat
-
-    /// The opacity of the border gradient.
-    public var borderOpacity: CGFloat
-
-    /// The corner radius of the glass shape.
-    public var cornerRadius: CGFloat
-
-    /// The shadow blur radius.
-    public var shadowRadius: CGFloat
-
-    /// The shadow opacity.
-    public var shadowOpacity: CGFloat
-
-    // MARK: - Initialization
-
-    /// Creates a new glass configuration.
+    
+    /// The default glass style used when none is specified.
+    @Published public var defaultStyle: GlassStyle = .regular
+    
+    /// The default corner style for glass elements.
+    @Published public var defaultCornerStyle: GlassCornerStyle = .large
+    
+    /// Whether to honor the system's "Reduce Transparency" setting.
+    @Published public var respectReduceTransparency: Bool = true
+    
+    /// Whether to disable animations for accessibility.
+    @Published public var respectReduceMotion: Bool = true
+    
+    /// The default animation for glass transitions.
+    @Published public var defaultAnimation: Animation = .easeInOut(duration: 0.3)
+    
+    /// Whether to enable haptic feedback on glass button interactions.
+    @Published public var enableHaptics: Bool = true
+    
+    /// Global tint adjustment for dark mode.
+    @Published public var darkModeTintMultiplier: CGFloat = 0.7
+    
+    /// Global shadow adjustment for dark mode.
+    @Published public var darkModeShadowMultiplier: CGFloat = 1.3
+    
+    // MARK: - Performance
+    
+    /// Whether to use reduced quality effects on older devices.
+    @Published public var useAdaptivePerformance: Bool = true
+    
+    /// The minimum iOS version for Material effects (below this uses fallbacks).
+    public let materialMinimumVersion: Double = 15.0
+    
+    // MARK: - iOS 26 Migration
+    
+    /// Enable iOS 26 Liquid Glass compatibility mode.
     ///
-    /// - Parameters:
-    ///   - blurRadius: Background blur radius. Default `20`.
-    ///   - backgroundOpacity: Background fill opacity multiplier. Default `1.0`.
-    ///   - borderWidth: Border stroke width. Default `0.8`.
-    ///   - borderOpacity: Border gradient opacity. Default `0.25`.
-    ///   - cornerRadius: Corner radius. Default `16`.
-    ///   - shadowRadius: Shadow blur radius. Default `8`.
-    ///   - shadowOpacity: Shadow opacity. Default `0.1`.
-    public init(
-        blurRadius: CGFloat = 20,
-        backgroundOpacity: CGFloat = 1.0,
-        borderWidth: CGFloat = 0.8,
-        borderOpacity: CGFloat = 0.25,
-        cornerRadius: CGFloat = 16,
-        shadowRadius: CGFloat = 8,
-        shadowOpacity: CGFloat = 0.1
-    ) {
-        self.blurRadius = blurRadius
-        self.backgroundOpacity = backgroundOpacity
-        self.borderWidth = borderWidth
-        self.borderOpacity = borderOpacity
-        self.cornerRadius = cornerRadius
-        self.shadowRadius = shadowRadius
-        self.shadowOpacity = shadowOpacity
+    /// When iOS 26 is available, this will automatically use native Liquid Glass APIs.
+    /// On older versions, it provides a close approximation.
+    @Published public var enableLiquidGlassCompat: Bool = true
+    
+    /// Liquid Glass depth amount (for iOS 26 compatibility).
+    @Published public var liquidGlassDepth: CGFloat = 0.5
+    
+    // MARK: - Initialization
+    
+    private init() {
+        setupAccessibilityObservers()
     }
+    
+    // MARK: - Private
+    
+    private func setupAccessibilityObservers() {
+        #if os(iOS) || os(tvOS)
+        NotificationCenter.default.addObserver(
+            forName: UIAccessibility.reduceTransparencyStatusDidChangeNotification,
+            object: nil,
+            queue: .main
+        ) { [weak self] _ in
+            self?.objectWillChange.send()
+        }
+        
+        NotificationCenter.default.addObserver(
+            forName: UIAccessibility.reduceMotionStatusDidChangeNotification,
+            object: nil,
+            queue: .main
+        ) { [weak self] _ in
+            self?.objectWillChange.send()
+        }
+        #endif
+    }
+}
 
-    // MARK: - Presets
+// MARK: - Environment Key
 
-    /// The default glass configuration with balanced values.
-    public static let `default` = GlassConfiguration()
+private struct GlassConfigurationKey: EnvironmentKey {
+    static let defaultValue = GlassConfiguration.shared
+}
 
-    /// A subtle configuration with minimal blur and opacity.
-    public static let subtle = GlassConfiguration(
-        blurRadius: 12,
-        backgroundOpacity: 0.6,
-        borderWidth: 0.5,
-        borderOpacity: 0.15,
-        cornerRadius: 12,
-        shadowRadius: 4,
-        shadowOpacity: 0.05
-    )
+extension EnvironmentValues {
+    /// The glass configuration for the current environment.
+    public var glassConfiguration: GlassConfiguration {
+        get { self[GlassConfigurationKey.self] }
+        set { self[GlassConfigurationKey.self] = newValue }
+    }
+}
 
-    /// A prominent configuration with strong blur and thick borders.
-    public static let prominent = GlassConfiguration(
-        blurRadius: 30,
-        backgroundOpacity: 1.4,
-        borderWidth: 1.2,
-        borderOpacity: 0.35,
-        cornerRadius: 20,
-        shadowRadius: 12,
-        shadowOpacity: 0.15
-    )
+// MARK: - Accessibility Helpers
+
+extension GlassConfiguration {
+    
+    /// Whether transparency effects should be reduced.
+    public var shouldReduceTransparency: Bool {
+        guard respectReduceTransparency else { return false }
+        #if os(iOS) || os(tvOS)
+        return UIAccessibility.isReduceTransparencyEnabled
+        #elseif os(macOS)
+        return NSWorkspace.shared.accessibilityDisplayShouldReduceTransparency
+        #else
+        return false
+        #endif
+    }
+    
+    /// Whether motion/animations should be reduced.
+    public var shouldReduceMotion: Bool {
+        guard respectReduceMotion else { return false }
+        #if os(iOS) || os(tvOS)
+        return UIAccessibility.isReduceMotionEnabled
+        #elseif os(macOS)
+        return NSWorkspace.shared.accessibilityDisplayShouldReduceMotion
+        #else
+        return false
+        #endif
+    }
+    
+    /// Returns an appropriate animation considering accessibility settings.
+    public var accessibleAnimation: Animation? {
+        shouldReduceMotion ? nil : defaultAnimation
+    }
+}
+
+// MARK: - Device Performance
+
+extension GlassConfiguration {
+    
+    /// Returns whether the current device can handle full-quality effects.
+    public var supportsFullQuality: Bool {
+        guard useAdaptivePerformance else { return true }
+        
+        #if os(iOS)
+        // Check for older devices with limited GPU
+        let deviceModel = UIDevice.current.model
+        return !deviceModel.contains("iPad mini") || ProcessInfo.processInfo.physicalMemory > 2_000_000_000
+        #else
+        return true
+        #endif
+    }
+    
+    /// The appropriate blur radius based on device capabilities.
+    public func adaptiveBlurRadius(for style: GlassStyle) -> CGFloat {
+        let baseRadius = style.blurIntensity * 30
+        return supportsFullQuality ? baseRadius : baseRadius * 0.6
+    }
 }

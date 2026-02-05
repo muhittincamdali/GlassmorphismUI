@@ -1,352 +1,350 @@
-<p align="center">
-  <img src="Assets/logo.png" alt="GlassmorphismUI" width="200"/>
-</p>
+# GlassmorphismUI
 
-<h1 align="center">GlassmorphismUI</h1>
+[![Swift](https://img.shields.io/badge/Swift-5.9+-orange.svg)](https://swift.org)
+[![Platforms](https://img.shields.io/badge/Platforms-iOS%2015+%20|%20macOS%2012+%20|%20tvOS%2015+%20|%20watchOS%208+%20|%20visionOS-blue.svg)](https://developer.apple.com)
+[![SPM](https://img.shields.io/badge/SPM-Compatible-brightgreen.svg)](https://swift.org/package-manager/)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-<p align="center">
-  <strong>✨ Cross-platform glassmorphism components for iOS, Flutter & React Native</strong>
-</p>
+**Production-ready glassmorphism effects for SwiftUI.** Beautiful frosted glass UI components with iOS 26 Liquid Glass migration path.
 
-<p align="center">
-  <a href="https://github.com/muhittincamdali/GlassmorphismUI/actions/workflows/ci.yml">
-    <img src="https://github.com/muhittincamdali/GlassmorphismUI/actions/workflows/ci.yml/badge.svg" alt="CI"/>
-  </a>
-  <img src="https://img.shields.io/badge/iOS-17.0+-000000?style=flat-square&logo=apple&logoColor=white" alt="iOS"/>
-  <img src="https://img.shields.io/badge/Flutter-3.24-02569B?style=flat-square&logo=flutter&logoColor=white" alt="Flutter"/>
-  <img src="https://img.shields.io/badge/React_Native-0.75-61DAFB?style=flat-square&logo=react&logoColor=black" alt="React Native"/>
-  <img src="https://img.shields.io/badge/SPM-Compatible-FA7343?style=flat-square&logo=swift&logoColor=white" alt="SPM"/>
-  <img src="https://img.shields.io/badge/License-MIT-green?style=flat-square" alt="License"/>
-</p>
-
-<p align="center">
-  <a href="#features">Features</a> •
-  <a href="#installation">Installation</a> •
-  <a href="#quick-start">Quick Start</a> •
-  <a href="#platforms">Platforms</a> •
-  <a href="#contributing">Contributing</a>
-</p>
-
----
-
-## 📋 Table of Contents
-
-- [Why GlassmorphismUI?](#why-glassmorphismui)
-- [Features](#features)
-- [Requirements](#requirements)
-- [Installation](#installation)
-  - [iOS (Swift)](#ios-swift)
-  - [Flutter](#flutter)
-  - [React Native](#react-native)
-- [Quick Start](#quick-start)
-- [Platforms](#platforms)
-  - [iOS (SwiftUI)](#ios-swiftui)
-  - [Flutter](#flutter-1)
-  - [React Native](#react-native-1)
-- [Components](#components)
-- [Customization](#customization)
-- [Contributing](#contributing)
-- [License](#license)
-- [Star History](#-star-history)
-
----
-
-## Why GlassmorphismUI?
-
-Glassmorphism looks beautiful but is hard to implement consistently across platforms. **GlassmorphismUI** provides identical glass effects for iOS, Flutter, and React Native with the same API design.
-
-```swift
-// iOS
-GlassCard(blur: 10, opacity: 0.2) {
-    Text("Glass Card")
-}
 ```
-
-```dart
-// Flutter
-GlassCard(
-  blur: 10,
-  opacity: 0.2,
-  child: Text('Glass Card'),
-)
-```
-
-```tsx
-// React Native
-<GlassCard blur={10} opacity={0.2}>
-  <Text>Glass Card</Text>
-</GlassCard>
+┌────────────────────────────────────────────────────────────────────┐
+│                                                                    │
+│    ╭─────────────────────────────────────────────────────────╮    │
+│    │ ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ │    │
+│    │ ░░░░░░░░░░░░░░░ GLASSMORPHISM UI ░░░░░░░░░░░░░░░░░░░░ │    │
+│    │ ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ │    │
+│    │ ░░░  Frosted Glass  •  Blur Effects  •  SwiftUI  ░░░ │    │
+│    │ ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ │    │
+│    ╰─────────────────────────────────────────────────────────╯    │
+│                                                                    │
+└────────────────────────────────────────────────────────────────────┘
 ```
 
 ## Features
 
-| Feature | iOS | Flutter | React Native |
-|---------|-----|---------|--------------|
-| 🧊 **GlassCard** | ✅ | ✅ | ✅ |
-| 🔘 **GlassButton** | ✅ | ✅ | ✅ |
-| 📱 **GlassNavBar** | ✅ | ✅ | ✅ |
-| 🌈 **AuroraBackground** | ✅ | ✅ | ✅ |
-| ✨ **GlowEffect** | ✅ | ✅ | ✅ |
-| 🎨 **Custom Blur** | ✅ | ✅ | ✅ |
-| 🌙 **Dark Mode** | ✅ | ✅ | ✅ |
-| ⚡ **GPU Optimized** | ✅ | ✅ | ✅ |
+- 🪟 **Multiple Glass Effects** - Frosted, gradient, animated, liquid glass
+- 📦 **Ready-to-Use Components** - Cards, buttons, navigation bars, tab bars, modals
+- 🎨 **Highly Customizable** - Styles, materials, corner radii, animations
+- ♿ **Accessibility First** - Respects Reduce Transparency & Reduce Motion
+- 🌙 **Dark Mode Optimized** - Automatic adjustments for dark appearance
+- 🚀 **iOS 26 Ready** - Built-in migration path to native Liquid Glass
+- 📱 **Multi-Platform** - iOS, macOS, tvOS, watchOS, visionOS
 
 ## Requirements
 
 | Platform | Minimum Version |
-|----------|-----------------|
-| iOS | 17.0+ |
-| macOS | 14.0+ |
-| Flutter | 3.24+ |
-| React Native | 0.75+ |
-| Xcode | 15.0+ |
-| Swift | 5.9+ |
+|----------|----------------|
+| iOS | 15.0+ |
+| macOS | 12.0+ |
+| tvOS | 15.0+ |
+| watchOS | 8.0+ |
+| visionOS | 1.0+ |
 
 ## Installation
 
-### iOS (Swift)
-
-**Swift Package Manager:**
+### Swift Package Manager
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/muhittincamdali/GlassmorphismUI.git", from: "1.0.0")
+    .package(url: "https://github.com/muhittinc/GlassmorphismUI.git", from: "2.0.0")
 ]
 ```
 
-**CocoaPods:**
+### CocoaPods
 
 ```ruby
-pod 'GlassmorphismUI', '~> 1.0'
-```
-
-### Flutter
-
-```yaml
-dependencies:
-  glassmorphism_ui: ^1.0.0
-```
-
-### React Native
-
-```bash
-npm install glassmorphism-ui
-# or
-yarn add glassmorphism-ui
+pod 'GlassmorphismUI', '~> 2.0'
 ```
 
 ## Quick Start
 
-### iOS (SwiftUI)
-
 ```swift
 import GlassmorphismUI
-import SwiftUI
 
 struct ContentView: View {
     var body: some View {
         ZStack {
-            // Background gradient
-            LinearGradient(
-                colors: [.purple, .blue],
-                startPoint: .topLeading,
-                endPoint: .bottomTrailing
-            )
-            .ignoresSafeArea()
+            // Your background
+            LinearGradient(colors: [.purple, .blue], startPoint: .topLeading, endPoint: .bottomTrailing)
+                .ignoresSafeArea()
             
-            // Glass card
-            GlassCard(blur: 10, opacity: 0.2) {
-                VStack {
-                    Text("Welcome")
-                        .font(.title)
-                    Text("Glassmorphism UI")
-                        .font(.headline)
-                }
-                .padding()
-            }
+            // Glass content
+            Text("Hello, Glass!")
+                .font(.title)
+                .padding(32)
+                .glass()
         }
     }
 }
 ```
 
-### Flutter
+## Glass Effects
 
-```dart
-import 'package:glassmorphism_ui/glassmorphism_ui.dart';
-
-class MyWidget extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [Colors.purple, Colors.blue],
-        ),
-      ),
-      child: Center(
-        child: GlassCard(
-          blur: 10,
-          opacity: 0.2,
-          child: Padding(
-            padding: EdgeInsets.all(20),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text('Welcome', style: TextStyle(fontSize: 24)),
-                Text('Glassmorphism UI'),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-```
-
-### React Native
-
-```tsx
-import { GlassCard } from 'glassmorphism-ui';
-import { LinearGradient } from 'expo-linear-gradient';
-
-export default function App() {
-  return (
-    <LinearGradient colors={['purple', 'blue']} style={styles.container}>
-      <GlassCard blur={10} opacity={0.2} style={styles.card}>
-        <Text style={styles.title}>Welcome</Text>
-        <Text>Glassmorphism UI</Text>
-      </GlassCard>
-    </LinearGradient>
-  );
-}
-```
-
-## Platforms
-
-### iOS (SwiftUI)
+### Basic Glass
 
 ```swift
-// GlassCard
-GlassCard(blur: 10, opacity: 0.2, cornerRadius: 20) {
-    Text("Glass Card")
-}
+Text("Basic")
+    .padding()
+    .glass()
 
-// GlassButton
-GlassButton("Press Me", blur: 5) {
-    print("Button pressed!")
-}
+// With style preset
+Text("Prominent")
+    .padding()
+    .glass(style: .prominent)
 
-// GlassNavBar
-GlassNavBar(items: [
-    .init(icon: "house", title: "Home"),
-    .init(icon: "magnifyingglass", title: "Search"),
-    .init(icon: "person", title: "Profile"),
-], selectedIndex: $selectedIndex)
+// With custom corner radius
+Text("Rounded")
+    .padding()
+    .glass(cornerRadius: 24)
 ```
 
-### Flutter
+### Frosted Glass
 
-```dart
-// GlassCard
-GlassCard(
-  blur: 10,
-  opacity: 0.2,
-  borderRadius: 20,
-  border: GlassBorder(width: 1, color: Colors.white30),
-  child: Text('Glass Card'),
-)
+```swift
+Text("Frosted")
+    .padding()
+    .frostedGlass()
 
-// GlassButton
-GlassButton(
-  onPressed: () => print('Pressed!'),
-  blur: 5,
-  child: Text('Press Me'),
-)
-
-// GlassNavBar
-GlassNavBar(
-  items: [
-    GlassNavItem(icon: Icons.home, label: 'Home'),
-    GlassNavItem(icon: Icons.search, label: 'Search'),
-    GlassNavItem(icon: Icons.person, label: 'Profile'),
-  ],
-  currentIndex: _currentIndex,
-  onTap: (index) => setState(() => _currentIndex = index),
-)
+// With tint
+Text("Blue Frost")
+    .padding()
+    .frostedGlass(tint: .blue, intensity: 0.4)
 ```
 
-### React Native
+### Gradient Glass
 
-```tsx
-// GlassCard
-<GlassCard blur={10} opacity={0.2} borderRadius={20}>
-  <Text>Glass Card</Text>
-</GlassCard>
+```swift
+Text("Gradient")
+    .padding()
+    .gradientGlass(colors: [.pink, .purple])
 
-// GlassButton
-<GlassButton blur={5} onPress={() => console.log('Pressed!')}>
-  <Text>Press Me</Text>
-</GlassButton>
+// Aurora effect (animated)
+Text("Aurora")
+    .padding()
+    .auroraGlass(colors: [.cyan, .purple, .pink])
+```
 
-// GlassNavBar
-<GlassNavBar
-  items={[
-    { icon: 'home', label: 'Home' },
-    { icon: 'search', label: 'Search' },
-    { icon: 'person', label: 'Profile' },
-  ]}
-  currentIndex={currentIndex}
-  onSelect={setCurrentIndex}
-/>
+### Animated Glass
+
+```swift
+Text("Shimmer")
+    .padding()
+    .animatedGlass(.shimmer)
+
+Text("Pulse")
+    .padding()
+    .animatedGlass(.pulse)
+
+Text("Rainbow")
+    .padding()
+    .animatedGlass(.rainbow)
+```
+
+### Liquid Glass (iOS 26 Compatible)
+
+```swift
+Text("Liquid")
+    .padding()
+    .liquidGlass()
+
+// With depth
+Text("Deep")
+    .padding()
+    .liquidGlass(depth: 0.8, tint: .blue)
 ```
 
 ## Components
 
-| Component | Description |
-|-----------|-------------|
-| **GlassCard** | Container with glass effect |
-| **GlassButton** | Button with glass background |
-| **GlassNavBar** | Bottom navigation bar |
-| **GlassTextField** | Text input with glass styling |
-| **GlassAlert** | Alert dialog with glass effect |
-| **GlassSheet** | Bottom sheet with glass |
+### GlassCard
 
-## Customization
+```swift
+GlassCard {
+    VStack {
+        Image(systemName: "star.fill")
+            .font(.largeTitle)
+        Text("Featured Content")
+    }
+}
 
-All platforms support these properties:
+// With header and footer
+GlassCard {
+    Text("Main content goes here")
+} header: {
+    Label("Title", systemImage: "info.circle")
+} footer: {
+    Button("Learn More") { }
+}
+```
 
-| Property | Type | Default | Description |
-|----------|------|---------|-------------|
-| `blur` | Number | 10 | Blur intensity |
-| `opacity` | Number | 0.2 | Background opacity |
-| `tint` | Color | white | Tint color |
-| `borderRadius` | Number | 16 | Corner radius |
-| `borderWidth` | Number | 1 | Border width |
-| `borderColor` | Color | white30 | Border color |
+### GlassButton
+
+```swift
+GlassButton("Submit") {
+    print("Tapped!")
+}
+
+// With custom style
+GlassButton("Delete", style: .destructive) {
+    deleteItem()
+}
+
+// Full width
+GlassButton("Continue", style: .fullWidth()) {
+    proceed()
+}
+```
+
+### GlassNavigationBar
+
+```swift
+GlassNavigationBar(title: "Settings", subtitle: "Customize your experience") {
+    GlassBackButton { dismiss() }
+} trailing: {
+    Button(action: save) {
+        Image(systemName: "checkmark")
+    }
+}
+```
+
+### GlassTabBar
+
+```swift
+@State private var selectedTab = "home"
+
+let tabs = [
+    GlassTabItem(id: "home", title: "Home", icon: "house"),
+    GlassTabItem(id: "search", title: "Search", icon: "magnifyingglass"),
+    GlassTabItem(id: "profile", title: "Profile", icon: "person", badge: "3")
+]
+
+GlassTabBar(selection: $selectedTab, items: tabs)
+
+// Or use FloatingGlassTabBar for a pill-style tab bar
+FloatingGlassTabBar(selection: $selectedTab, items: tabs)
+```
+
+### GlassModal
+
+```swift
+@State private var showModal = false
+
+Button("Show Modal") { showModal = true }
+    .glassModal(isPresented: $showModal) {
+        VStack(spacing: 20) {
+            Text("Modal Title")
+                .font(.title2.bold())
+            
+            Text("Modal content with glass styling.")
+            
+            GlassButton("Dismiss") {
+                showModal = false
+            }
+        }
+        .padding()
+    }
+```
+
+## Glass Styles
+
+| Style | Description |
+|-------|-------------|
+| `.subtle` | Barely-there glass effect |
+| `.regular` | Balanced default style |
+| `.prominent` | Higher contrast glass |
+| `.frosted` | Thick, matte appearance |
+| `.ultraThin` | System UI style |
+| `.thick` | Maximum blur |
+
+## Configuration
+
+### Global Settings
+
+```swift
+// In your App initialization
+GlassConfiguration.shared.defaultStyle = .prominent
+GlassConfiguration.shared.enableHaptics = true
+GlassConfiguration.shared.respectReduceTransparency = true
+GlassConfiguration.shared.enableLiquidGlassCompat = true
+```
+
+### Per-View Configuration
+
+```swift
+ContentView()
+    .environment(\.glassConfiguration, customConfig)
+```
+
+## Accessibility
+
+GlassmorphismUI automatically respects system accessibility settings:
+
+- **Reduce Transparency**: Falls back to solid backgrounds
+- **Reduce Motion**: Disables animations
+- **Increase Contrast**: Adjusts borders and shadows
+
+```swift
+// Override if needed
+GlassConfiguration.shared.respectReduceTransparency = false
+```
+
+## iOS 26 Migration
+
+GlassmorphismUI provides a smooth migration path to iOS 26's native Liquid Glass:
+
+```swift
+// Your existing code
+Text("Hello")
+    .glass()  // Uses Material on iOS 15-18
+
+// On iOS 26+, automatically uses native Liquid Glass!
+// No code changes required.
+
+// For explicit Liquid Glass style:
+Text("Hello")
+    .liquidGlass(depth: 0.6)
+```
+
+## Performance Tips
+
+1. **Avoid Overlapping Glass**: Multiple overlapping glass layers can impact performance
+2. **Use Appropriate Materials**: `.ultraThin` is lighter than `.ultraThick`
+3. **Disable Animations When Needed**: Set animation to `.none` for static content
+4. **Test on Older Devices**: Use `GlassConfiguration.shared.useAdaptivePerformance = true`
+
+## Architecture
+
+```
+GlassmorphismUI/
+├── Core/
+│   ├── GlassStyle          # Style definitions
+│   └── GlassConfiguration  # Global settings
+├── Modifiers/
+│   ├── GlassModifier       # Basic glass effect
+│   ├── FrostedGlassModifier
+│   ├── GradientGlassModifier
+│   └── AnimatedGlassModifier
+├── Components/
+│   ├── GlassCard
+│   ├── GlassButton
+│   ├── GlassNavigationBar
+│   ├── GlassTabBar
+│   └── GlassModal
+├── Accessibility/
+│   └── GlassAccessibility  # A11y support
+└── Extensions/
+    ├── ViewExtensions      # Convenience APIs
+    └── LiquidGlassCompat   # iOS 26 compatibility
+```
 
 ## Contributing
 
-Contributions are welcome! Please read our [Contributing Guide](CONTRIBUTING.md) for details.
+Contributions are welcome! Please read [CONTRIBUTING.md](CONTRIBUTING.md) first.
 
 ## License
 
-GlassmorphismUI is released under the MIT License. See [LICENSE](LICENSE) for details.
+MIT License - see [LICENSE](LICENSE) for details.
 
 ---
 
-## 📈 Star History
-
-<a href="https://star-history.com/#muhittincamdali/GlassmorphismUI&Date">
- <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=muhittincamdali/GlassmorphismUI&type=Date&theme=dark" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=muhittincamdali/GlassmorphismUI&type=Date" />
-   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=muhittincamdali/GlassmorphismUI&type=Date" />
- </picture>
-</a>
-
----
-
-<p align="center">
-  Made with ❤️ by <a href="https://github.com/muhittincamdali">Muhittin Camdali</a>
-</p>
+**Made with ❤️ for the SwiftUI community**

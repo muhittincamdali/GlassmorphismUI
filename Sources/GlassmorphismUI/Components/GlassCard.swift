@@ -1,119 +1,214 @@
+// GlassCard.swift
+// GlassmorphismUI - Production-ready glassmorphism effects for SwiftUI
+// Copyright (c) 2024-2025 Muhittin Camdali. MIT License.
+
 import SwiftUI
 
-/// A pre-built card component with a glassmorphism background.
+// MARK: - GlassCard
+
+/// A card component with glass background.
 ///
-/// `GlassCard` wraps your content in a rounded glass panel with
-/// optional padding and material configuration:
+/// ## Example
 ///
 /// ```swift
 /// GlassCard {
 ///     VStack {
-///         Text("Title").font(.headline)
-///         Text("Subtitle").font(.subheadline)
+///         Image(systemName: "star.fill")
+///         Text("Featured")
 ///     }
 /// }
+///
+/// // With header and footer
+/// GlassCard {
+///     Text("Content")
+/// } header: {
+///     Text("Title")
+/// } footer: {
+///     Button("Action") { }
+/// }
 /// ```
-public struct GlassCard<Content: View>: View {
+public struct GlassCard<Content: View, Header: View, Footer: View>: View {
+    
     // MARK: - Properties
-
-    private let content: Content
-    private let configuration: GlassConfiguration
-    private let material: GlassMaterial
+    
+    private let style: GlassStyle
+    private let cornerRadius: CGFloat
     private let padding: CGFloat
-
+    private let content: Content
+    private let header: Header?
+    private let footer: Footer?
+    
     @Environment(\.colorScheme) private var colorScheme
-
+    
     // MARK: - Initialization
-
-    /// Creates a glass card.
-    ///
-    /// - Parameters:
-    ///   - configuration: Glass configuration. Defaults to `.default`.
-    ///   - material: Glass material. Defaults to `.regular`.
-    ///   - padding: Inner content padding. Defaults to `16`.
-    ///   - content: The card's content.
+    
+    /// Creates a glass card with content only.
     public init(
-        configuration: GlassConfiguration = .default,
-        material: GlassMaterial = .regular,
+        style: GlassStyle = .regular,
+        cornerRadius: CGFloat = 16,
         padding: CGFloat = 16,
         @ViewBuilder content: () -> Content
-    ) {
-        self.configuration = configuration
-        self.material = material
+    ) where Header == EmptyView, Footer == EmptyView {
+        self.style = style
+        self.cornerRadius = cornerRadius
         self.padding = padding
         self.content = content()
+        self.header = nil
+        self.footer = nil
     }
-
+    
+    /// Creates a glass card with content and header.
+    public init(
+        style: GlassStyle = .regular,
+        cornerRadius: CGFloat = 16,
+        padding: CGFloat = 16,
+        @ViewBuilder content: () -> Content,
+        @ViewBuilder header: () -> Header
+    ) where Footer == EmptyView {
+        self.style = style
+        self.cornerRadius = cornerRadius
+        self.padding = padding
+        self.content = content()
+        self.header = header()
+        self.footer = nil
+    }
+    
+    /// Creates a glass card with content, header, and footer.
+    public init(
+        style: GlassStyle = .regular,
+        cornerRadius: CGFloat = 16,
+        padding: CGFloat = 16,
+        @ViewBuilder content: () -> Content,
+        @ViewBuilder header: () -> Header,
+        @ViewBuilder footer: () -> Footer
+    ) {
+        self.style = style
+        self.cornerRadius = cornerRadius
+        self.padding = padding
+        self.content = content()
+        self.header = header()
+        self.footer = footer()
+    }
+    
     // MARK: - Body
-
+    
     public var body: some View {
-        content
-            .padding(padding)
-            .glass(configuration: cardConfiguration, material: material)
-    }
-
-    // MARK: - Private
-
-    /// The card uses a slightly larger corner radius than the base configuration.
-    private var cardConfiguration: GlassConfiguration {
-        var config = configuration
-        if config.cornerRadius < 20 {
-            config.cornerRadius = 20
+        VStack(alignment: .leading, spacing: 12) {
+            if let header = header {
+                header
+                    .font(.headline)
+                
+                Divider()
+                    .background(Color.white.opacity(0.2))
+            }
+            
+            content
+            
+            if let footer = footer {
+                Divider()
+                    .background(Color.white.opacity(0.2))
+                
+                footer
+                    .font(.subheadline)
+            }
         }
-        return config
+        .padding(padding)
+        .glass(style: style, cornerRadius: cornerRadius)
+    }
+}
+
+// MARK: - GlassCardStyle
+
+/// Predefined styles for glass cards.
+public enum GlassCardStyle {
+    /// Standard card appearance.
+    case standard
+    
+    /// Elevated card with more prominent shadow.
+    case elevated
+    
+    /// Flat card with minimal depth.
+    case flat
+    
+    /// Inset card that appears recessed.
+    case inset
+    
+    var glassStyle: GlassStyle {
+        switch self {
+        case .standard:
+            return .regular
+        case .elevated:
+            return GlassStyle(
+                shadowRadius: 20,
+                shadowOpacity: 0.25
+            )
+        case .flat:
+            return GlassStyle(
+                shadowRadius: 0,
+                shadowOpacity: 0
+            )
+        case .inset:
+            return GlassStyle(
+                tintOpacity: 0.05,
+                borderOpacity: 0.1,
+                shadowRadius: 2,
+                shadowOpacity: 0.05
+            )
+        }
     }
 }
 
 // MARK: - Convenience Initializers
 
-public extension GlassCard {
-    /// Creates a glass card with a specific material preset.
-    ///
-    /// - Parameters:
-    ///   - material: The glass material to use.
-    ///   - content: The card's content.
-    init(
-        material: GlassMaterial,
+extension GlassCard where Header == EmptyView, Footer == EmptyView {
+    
+    /// Creates a glass card with a predefined style.
+    public init(
+        cardStyle: GlassCardStyle,
+        cornerRadius: CGFloat = 16,
+        padding: CGFloat = 16,
         @ViewBuilder content: () -> Content
     ) {
-        self.init(configuration: .default, material: material, padding: 16, content: content)
+        self.init(
+            style: cardStyle.glassStyle,
+            cornerRadius: cornerRadius,
+            padding: padding,
+            content: content
+        )
     }
 }
 
-// MARK: - Previews
+// MARK: - Preview
 
 #if DEBUG
-#Preview("GlassCard") {
-    ZStack {
-        LinearGradient(colors: [.orange, .pink, .purple], startPoint: .top, endPoint: .bottom)
+struct GlassCard_Previews: PreviewProvider {
+    static var previews: some View {
+        ZStack {
+            LinearGradient(
+                colors: [.purple, .blue],
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
+            )
             .ignoresSafeArea()
-
-        VStack(spacing: 20) {
-            GlassCard {
-                VStack(alignment: .leading, spacing: 8) {
-                    Text("Notifications")
-                        .font(.headline)
-                        .foregroundStyle(.white)
-                    Text("You have 3 new messages")
-                        .font(.subheadline)
-                        .foregroundStyle(.white.opacity(0.8))
+            
+            VStack(spacing: 20) {
+                GlassCard {
+                    Text("Simple Card Content")
                 }
-                .frame(maxWidth: .infinity, alignment: .leading)
-            }
-
-            GlassCard(material: .thick) {
-                HStack {
-                    Image(systemName: "heart.fill")
-                        .foregroundStyle(.red)
-                    Text("Favorites")
-                        .foregroundStyle(.white)
-                    Spacer()
-                    Text("12")
-                        .foregroundStyle(.white.opacity(0.7))
+                
+                GlassCard {
+                    Text("Card with all sections")
+                } header: {
+                    Label("Header", systemImage: "star.fill")
+                } footer: {
+                    HStack {
+                        Spacer()
+                        Text("Footer")
+                    }
                 }
             }
+            .padding()
         }
-        .padding()
     }
 }
 #endif
