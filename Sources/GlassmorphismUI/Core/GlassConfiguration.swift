@@ -17,7 +17,8 @@ import SwiftUI
 /// GlassConfiguration.shared.defaultStyle = .prominent
 /// GlassConfiguration.shared.reduceTransparency = false
 /// ```
-public final class GlassConfiguration: ObservableObject, @unchecked Sendable {
+@MainActor
+public final class GlassConfiguration: ObservableObject, Sendable {
     
     // MARK: - Singleton
     
@@ -101,7 +102,7 @@ public final class GlassConfiguration: ObservableObject, @unchecked Sendable {
 // MARK: - Environment Key
 
 private struct GlassConfigurationKey: EnvironmentKey {
-    static let defaultValue = GlassConfiguration.shared
+    @MainActor static let defaultValue = GlassConfiguration.shared
 }
 
 extension EnvironmentValues {

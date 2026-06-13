@@ -51,6 +51,7 @@ public struct LiquidGlassCompat {
     }
     
     /// The current compatibility mode.
+    @MainActor
     public static var currentMode: Mode {
         guard GlassConfiguration.shared.enableLiquidGlassCompat else {
             return .disabled
