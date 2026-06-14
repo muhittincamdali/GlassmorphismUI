@@ -15,6 +15,9 @@
 
 # GlassmorphismUI
 
+## 🚀 Killer Feature: Interactive Morphing Surfaces
+Static glass is boring. The `.interactiveMorphingGlass()` modifier reacts to user touch and scroll velocity, dynamically shifting its refraction, corner radius, and shadow depth via a hardware-accelerated physics engine.
+
 [![Swift](https://img.shields.io/badge/Swift-5.9+-orange.svg)](https://swift.org)
 [![Platforms](https://img.shields.io/badge/Platforms-iOS%2015+%20|%20macOS%2012+%20|%20tvOS%2015+%20|%20watchOS%208+%20|%20visionOS-blue.svg)](https://developer.apple.com)
 [![SPM](https://img.shields.io/badge/SPM-Compatible-brightgreen.svg)](https://swift.org/package-manager/)
